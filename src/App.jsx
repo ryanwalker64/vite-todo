@@ -1,8 +1,8 @@
-import { useEffect, useReducer, useState, createContext } from 'react'
-import './App.css'
+import { useEffect, useReducer, useState } from 'react'
 
 import TaskForm from './components/TaskForm'
 import TaskList from './components/Tasklist'
+import NavBar from './components/NavBar'
 
 
 
@@ -37,29 +37,26 @@ function App() {
   const deleteTask = (id) => dispatch({type: "DELETE_TASK", id: id})
 
   useEffect(() => {
-    // if(state.length === 0) return
     window.localStorage.setItem('tasks', JSON.stringify(state))
   }, [state])
 
 
   return (
-    <div className="App">
-      <div>
-        <span onClick={() => setFilter('all')} style={{margin: "0 10px 0 0"}}>All</span>
-        <span onClick={() => setFilter('active')} style={{margin: "0 10px 0 0"}}>Active</span>
-        <span onClick={() => setFilter('completed')}>Completed</span>
-      </div>
+    <div className="pt-10 h-full"> 
+      <div className="w-11/12 max-w-lg m-auto rounded-lg bg-white shadow-md">
+        <NavBar state={state} setFilter={setFilter} filter={filter}/>
 
-      <TaskForm addTask={addTask}/>
-      <TaskList 
-      tasks={
-        filter === 'active' 
-        ? state.filter(task => task.isComplete === false) 
-        : filter === 'completed'  
-          ? state.filter(task => task.isComplete === true)
-          : state} 
-      completeTask={completeTask} 
-      deleteTask={deleteTask}/> 
+        {/* <TaskForm addTask={addTask}/> */}
+        <TaskList 
+        tasks={
+          filter === 'active' 
+          ? state.filter(task => task.isComplete === false) 
+          : filter === 'completed'  
+            ? state.filter(task => task.isComplete === true)
+            : state} 
+        completeTask={completeTask} 
+        deleteTask={deleteTask}/> 
+      </div>
     </div>
   )
 }
@@ -69,3 +66,15 @@ export default App
 
 
 // use context for darkmode and task deletion/creation
+
+//  The basic stuff, title, body, some states (like "done", priority levels etc.).
+// Add users, so users can login and have their own todos
+// Make sure both mobile and desktop experience are slick and usable
+// Add some filters (like different categories for cards/todos, priorities, status etc.) to filter and sort your todos
+// Add drag and drop rearrangement feature
+// Add date and time reminders
+// Pivot it towards KANBAN kind of app, with appropriate states and changes to layout. Maybe even support multiple layouts (KANBAN, classic, ...)
+// Add projects (or "rooms") that could contain several users, to support the KANBAN design
+// Add markdown editor to your "todo" body
+// Some sort of invite functionality to support the KANBAN design
+// Continue on adding features, swap some technologies somewhere along the journey to experience major PITA "refactorings"

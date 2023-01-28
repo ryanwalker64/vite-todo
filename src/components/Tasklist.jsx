@@ -1,5 +1,4 @@
-import React, { useEffect, useContext } from "react"
-import { DarkModeContext } from "./DarkModeContext"
+import React, { useEffect } from "react"
 
 import Task from "./Task"
 
@@ -19,11 +18,10 @@ function TaskList({tasks, completeTask, deleteTask}) {
     })
     
     return (
-        <DarkModeContext.Provider value= >
-            <div>
+
+            <div className="px-6 py-5">
             {tasksDOM}
             </div>
-        </DarkModeContext.Provider>
     )
   }
 export default TaskList
