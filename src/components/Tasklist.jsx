@@ -4,7 +4,7 @@ import Task from "./Task"
 
 
 function TaskList({tasks, completeTask, deleteTask}) {
-    if (tasks.length === 0) return "No tasks"
+    if (tasks.length === 0) return <p className="px-6 py-5">No tasks</p>
 
     const tasksDOM = tasks.map(task => {
         return (

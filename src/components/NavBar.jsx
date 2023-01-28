@@ -11,11 +11,11 @@ function NavBtn({name, setFilter, isActive, taskCount}) {
     )
   }
   
-function NavBar({state, filter, setFilter}) {
+function NavBar({state, filter, setFilter, setOpenTaskForm}) {
 
 
     return (
-      <div className="flex gap-5 px-6 border-b border-slate">
+      <div className="flex gap-5 px-6 border-b border-slate items-center">
               <NavBtn 
                 name="All" 
                 setFilter={() => setFilter('all')} 
@@ -33,6 +33,9 @@ function NavBar({state, filter, setFilter}) {
                 setFilter={() => setFilter('completed')} 
                 isActive={filter === 'completed' && true}
                 taskCount={state.filter(task => task.isComplete === true).length}/>
+            
+            <button onClick={() => setOpenTaskForm(prev => !prev)} className="ml-auto border-purple-500 bg-purple-600 px-3 py-1 rounded-lg text-white hover:bg-purple-500">Add +</button>
+      
           </div>
     )
   }

@@ -30,7 +30,9 @@ function taskReducer(state, action) {
 function App() {
   const [state, dispatch] = useReducer(taskReducer, 
     JSON.parse(window.localStorage.getItem('tasks')) || [])
+
   const [filter, setFilter] = useState('all')
+  const [openTaskForm, setOpenTaskForm] = useState(state.length < 1 ? true : false)
 
   const addTask = (task) => dispatch({type: "ADD_TASK", task: task})
   const completeTask = (id) => dispatch({type: "COMPLETE_TASK", id: id})
@@ -42,11 +44,13 @@ function App() {
 
 
   return (
-    <div className="pt-10 h-full"> 
-      <div className="w-11/12 max-w-lg m-auto rounded-lg bg-white shadow-md">
-        <NavBar state={state} setFilter={setFilter} filter={filter}/>
+    <div className="pt-10"> 
+      
+      {openTaskForm && <TaskForm addTask={addTask} setOpenTaskForm={setOpenTaskForm}/>}
 
-        {/* <TaskForm addTask={addTask}/> */}
+      <div className="w-11/12 max-w-lg m-auto rounded-lg bg-white shadow-md">
+        <NavBar state={state} setFilter={setFilter} filter={filter} setOpenTaskForm={setOpenTaskForm}/>
+
         <TaskList 
         tasks={
           filter === 'active' 
