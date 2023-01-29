@@ -1,18 +1,7 @@
 import React, {  } from "react"
+import NavBtn from "./NavBtn"
 
-function NavBtn({name, setFilter, isActive, taskCount}) {
-    return (
-      <button 
-              className={`font-medium flex gap-2 py-4 opacity-50 ${isActive && 'border-b-2 border-purple-400 opacity-100'} `}
-              onClick={setFilter}>
-                {name} 
-                {taskCount > 0 && <span className='bg-purple-100 px-2 py-1 rounded-full text-xs align-middle'>{taskCount}</span> }
-      </button>
-    )
-  }
-  
 function NavBar({state, filter, setFilter, setOpenTaskForm}) {
-
 
     return (
       <div className="flex gap-5 px-6 border-b border-slate items-center">
@@ -34,7 +23,12 @@ function NavBar({state, filter, setFilter, setOpenTaskForm}) {
                 isActive={filter === 'completed' && true}
                 taskCount={state.filter(task => task.isComplete === true).length}/>
             
-            <button onClick={() => setOpenTaskForm(prev => !prev)} className="ml-auto border-purple-500 bg-purple-600 px-3 py-1 rounded-lg text-white hover:bg-purple-500">Add +</button>
+              <button 
+                onClick={() => setOpenTaskForm(prev => !prev)} 
+                className="ml-auto border-purple-500 bg-purple-600 px-3 py-1 rounded-lg text-white
+                 hover:bg-purple-500">
+                  Add +
+              </button>
       
           </div>
     )

@@ -6,15 +6,12 @@ import NavBar from './components/NavBar'
 
 
 
+
 function taskReducer(state, action) {
   switch (action.type) {
-    case "ADD_TASK":
-      return [...state, action.task]
+    case "ADD_TASK": return [...state, action.task]
 
-    case "COMPLETE_TASK":
-      return state.map(task => {
-        return task.id !== action.id ? task : {...task, isComplete: !task.isComplete}
-      })
+    case "COMPLETE_TASK": return state.map(task => task.id !== action.id ? task : {...task, isComplete: !task.isComplete})
 
     case "DELETE_TASK":
       const newTaskList = state.filter(task => task.id !== action.id)
@@ -68,17 +65,28 @@ function App() {
 export default App
 
 
-
-// use context for darkmode and task deletion/creation
-
-//  The basic stuff, title, body, some states (like "done", priority levels etc.).
-// Add users, so users can login and have their own todos
-// Make sure both mobile and desktop experience are slick and usable
-// Add some filters (like different categories for cards/todos, priorities, status etc.) to filter and sort your todos
-// Add drag and drop rearrangement feature
-// Add date and time reminders
-// Pivot it towards KANBAN kind of app, with appropriate states and changes to layout. Maybe even support multiple layouts (KANBAN, classic, ...)
-// Add projects (or "rooms") that could contain several users, to support the KANBAN design
+// Priority Levels >> appear close to top
+// Open 1 Task
+// Edit tasks
+// Add animation library
+// Add sort by due-date
 // Add markdown editor to your "todo" body
+
+// Kanban 
+  // Create columns
+  // Move tasks between columns
+  // delete columns
+  // FOCUS MODE: hide other columns
+
+// Make projects that store kanban board
+  // make a project
+  // delete a project
+
+//Setup an overview page for "stats"
+
+// Add drag and drop rearrangement feature
+// Add users, so users can login and have their own todos
+// Setup a simple backend
+// Make sure both mobile and desktop experience are slick and usable
 // Some sort of invite functionality to support the KANBAN design
 // Continue on adding features, swap some technologies somewhere along the journey to experience major PITA "refactorings"
