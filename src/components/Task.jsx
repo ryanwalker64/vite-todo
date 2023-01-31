@@ -1,12 +1,9 @@
 import React, { useEffect } from "react"
-import { CalendarIcon, UserIcon } from '@heroicons/react/24/outline'
+import { CalendarIcon, UserIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { compareAsc, format } from 'date-fns'
 
 
 function Task({task, completeTask, deleteTask}) {
-
-
-  
   return (
     <div className="group border-b pb-6 flex mb-4">
         <div  
@@ -49,9 +46,23 @@ function Task({task, completeTask, deleteTask}) {
                   <span>•</span>
                 </>
               }
-              <div className="flex gap-2 items-center">
-                <UserIcon className="h-4 w-4"/>
-                <span className="font-normal text-sm">Ryan Walker</span>
+              <div className={`flex gap-2 items-center
+              ${task.priority === 'high' 
+              ? 'text-red-500 border-red-500' 
+              : task.priority === 'medium'
+                ? 'text-yellow-500 border-yellow-500'
+                : task.priority === 'low' 
+                  ? 'text-green-500 border-green-500'
+                  : 'text-slate-500 border-slate-500'}`}>
+                <ExclamationTriangleIcon className="h-4 w-4"/>
+                <span className="font-normal text-sm">{
+                  task.priority === 'high'
+                    ? "High Priority"
+                    : task.priority === 'medium'
+                      ? "Medium Priority"
+                        : task.priority === 'low'
+                          ? "Low Priority"
+                          : ''}</span>
               </div>
             </div>
         </div>

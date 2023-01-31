@@ -65,7 +65,7 @@ function App() {
 export default App
 
 
-// Priority Levels >> appear close to top
+// Sort list by Priority Levels >> appear close to top
 // Open 1 Task
 // Edit tasks
 // Add animation library
